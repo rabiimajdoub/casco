@@ -1,0 +1,56 @@
+<div class="p-5">
+
+    <form [formGroup]="form" >
+        <div class="grid grid-cols-3 gap-4 gap-y-2">
+            <mat-form-field class="!flex">
+                <mat-label>UAP</mat-label>
+                <input type="text" matInput formControlName="uap">
+            </mat-form-field>
+            <mat-form-field class="!flex">
+                <mat-label>Nom Auditeur</mat-label>
+                <input type="text" matInput formControlName="auditeur">
+            </mat-form-field>
+            <mat-form-field class="!flex">
+                <mat-label>Ligne</mat-label>
+                <input type="text" matInput formControlName="line">
+            </mat-form-field>
+            <mat-form-field class="!flex">
+                <mat-label>Nom Superviseur</mat-label>
+                <input type="text" matInput formControlName="supervisor">
+            </mat-form-field>
+            <mat-form-field class="!flex">
+                <mat-label>Produit</mat-label>
+                <input type="text" matInput formControlName="product">
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid-cols-2">
+            <div class="flex justify-center items-center">
+                <img class="rounded-lg max-w-[350px] w-full h-auto" [src]="'assets/lpa/q'+currentInstructionIndex+'.png'" alt="Product" /> 
+            </div>
+            <div class="">
+                <h1 class="text-2xl font-bold mb-4">Instruction N° {{currentInstructionIndex}} / {{maxInstructionIndex}}</h1>
+                <p> {{'lpa.questions.q'+currentInstructionIndex | translate}} </p>
+                <div class="flex justify-center my-4" >
+                    <mat-radio-group aria-label="response" formControlName="response">
+                        <mat-radio-button value="1">Oui</mat-radio-button>
+                        <mat-radio-button value="2">Non</mat-radio-button>
+                        <mat-radio-button value="3">N/A</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <mat-form-field class="!flex ">
+                    <mat-label>Commentaire</mat-label>
+                    <textarea matInput formControlName="comment" aria-label="Commentaire"></textarea>
+                </mat-form-field>
+                <div *ngIf="currentInstructionIndex < maxInstructionIndex" class="flex justify-end">
+                    <button (click)="nextInstruction()" mat-raised-button color="primary" [disabled]="form.get('response')!.invalid"> Next </button>
+                </div>
+                <div *ngIf="currentInstructionIndex == maxInstructionIndex" class="flex justify-end">
+                    <button (click)="generate()" mat-raised-button color="primary" [disabled]="form.invalid"> Terminer </button>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+
+</div>
