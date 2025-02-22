@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/home",
+    "/home/audit-5s",
+    "/home/audit-lpa"
+  ]
+}
