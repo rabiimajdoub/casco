@@ -27,11 +27,11 @@ export class AuditFiveSComponent {
   
     private initializeForms(): void {
       this.form = new FormGroup({
-        uap: new FormControl("uap", { validators: Validators.required }),
-        auditeur: new FormControl("auditeur", { validators: Validators.required }),
-        line: new FormControl("line", { validators: Validators.required }),
-        supervisor: new FormControl("supervisor", { validators: Validators.required }),
-        product: new FormControl("product", { validators: Validators.required }),
+        uap: new FormControl(null, { validators: Validators.required }),
+        auditeur: new FormControl(null, { validators: Validators.required }),
+        line: new FormControl(null, { validators: Validators.required }),
+        supervisor: new FormControl(null, { validators: Validators.required }),
+        product: new FormControl(null, { validators: Validators.required }),
         comment: new FormControl(null),
         response: new FormControl(5, { validators: Validators.required }),
       })

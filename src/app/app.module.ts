@@ -44,7 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     StarRatingModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'fr',
-    }),
+    })
   ],
   providers: [
     provideClientHydration(),
