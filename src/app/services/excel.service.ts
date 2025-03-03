@@ -31,10 +31,10 @@ export class ExcelService {
             worksheet.getCell('Q8').value = headerData.supervisor;
 
             lpaData.forEach((row, rowIndex) => {
-                if (row[1]) worksheet.getCell(`Q${rowIndex + 12}`).value = "X";
-                if (row[2]) worksheet.getCell(`S${rowIndex + 12}`).value = "X"; 
-                if (row[3]) worksheet.getCell(`U${rowIndex + 12}`).value = "X"; 
-                worksheet.getCell(`V${rowIndex + 12}`).value = row[4];
+                if (row[1] == "oui") worksheet.getCell(`Q${rowIndex + 12}`).value = "X";
+                if (row[1] == "non") worksheet.getCell(`S${rowIndex + 12}`).value = "X"; 
+                if (row[1] == "na") worksheet.getCell(`U${rowIndex + 12}`).value = "X"; 
+                worksheet.getCell(`V${rowIndex + 12}`).value = row[2];
             });
 
             const fileName ='Checklist Layred Audit Process.xlsx';

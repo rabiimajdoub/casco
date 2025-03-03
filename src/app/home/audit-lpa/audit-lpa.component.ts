@@ -20,7 +20,7 @@ export interface HeaderMap {
 export class AuditLpaComponent implements OnInit {
 
   public currentInstructionIndex: number = 1;
-  public maxInstructionIndex: number = 21;
+  public maxInstructionIndex: number = 3;
 
   public form!: FormGroup;
   public lpaResponses: string[][] = [];
@@ -64,26 +64,42 @@ export class AuditLpaComponent implements OnInit {
   public resetForm(): void {
     this.form.reset();
   }
+
   
   nextInstruction(): void {
     if (this.currentInstructionIndex < this.maxInstructionIndex) {
 
       this.addResponse();
-      
-      this.form.get('response')!.setValue(null);
-      this.form.get('comment')!.setValue(null);
       this.currentInstructionIndex++;
+      if (this.lpaResponses[this.currentInstructionIndex-1])
+        this.loadResponse();
+      else {
+        this.form.get('response')!.setValue(null);
+        this.form.get('comment')!.setValue(null);
+      }
     }
   }
+  prevInstruction(): void {
+    if (this.currentInstructionIndex > 1) {
+      this.addResponse();
+      this.currentInstructionIndex--;
+      this.loadResponse();
+    }
+  }
+
+  private loadResponse(): void {
+    this.form.get('response')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][1] || null);
+    this.form.get('comment')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][2] || null);
+  }
+
 
   private addResponse(): void {
     let responseRow : string[] = [];
 
     responseRow[0]=this.translateService.instant('lpa.questions.q' + this.currentInstructionIndex);
-    responseRow[this.form.get('response')!.value] = "x";
-    responseRow[4]=this.form.get('comment')!.value;
-
-    this.lpaResponses.push(responseRow);
+    responseRow[1]=this.form.get('response')!.value;
+    responseRow[2]=this.form.get('comment')!.value;
+    this.lpaResponses[this.currentInstructionIndex-1] = responseRow;
   }
 
 

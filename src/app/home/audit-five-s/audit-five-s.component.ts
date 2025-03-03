@@ -62,11 +62,26 @@ export class AuditFiveSComponent {
       if (this.currentInstructionIndex < this.maxInstructionIndex) {
   
         this.addResponse();
-        
-        this.form.get('response')!.setValue(5);
-        this.form.get('comment')!.setValue(null);
         this.currentInstructionIndex++;
+        if (this.lpaResponses[this.currentInstructionIndex-1])
+          this.loadResponse();
+        else {
+          this.form.get('response')!.setValue(5);
+          this.form.get('comment')!.setValue(null);
+        }
       }
+    }
+    prevInstruction(): void {
+      if (this.currentInstructionIndex > 1) {
+        this.addResponse();
+        this.currentInstructionIndex--;
+        this.loadResponse();
+      }
+    }
+
+    private loadResponse(): void {
+      this.form.get('response')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][1] || 5);
+      this.form.get('comment')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][2] || null);
     }
   
     private addResponse(): void {
@@ -76,7 +91,7 @@ export class AuditFiveSComponent {
       responseRow[1]=this.form.get('response')!.value;
       responseRow[2]=this.form.get('comment')!.value;
   
-      this.lpaResponses.push(responseRow);
+      this.lpaResponses[this.currentInstructionIndex-1] = responseRow;
     }
   
 

@@ -4,7 +4,13 @@
         <div class="grid md:grid-cols-3 grid-cols-1 gap-4 gap-y-2">
             <mat-form-field class="!flex">
                 <mat-label>UAP</mat-label>
-                <input type="text" matInput formControlName="uap">
+                <select matNativeControl formControlName="uap">
+                    <option value="UAP 1">UAP 1</option>
+                    <option value="UAP 2">UAP 2</option>
+                    <option value="UAP 3">UAP 3</option>
+                    <option value="UAP 4">UAP 4</option>
+                    <option value="Magasin 5">Magasin</option>
+                </select>
             </mat-form-field>
             <mat-form-field class="!flex">
                 <mat-label>Nom Auditeur</mat-label>
@@ -33,22 +39,29 @@
                 <p> {{'lpa.questions.q'+currentInstructionIndex | translate}} </p>
                 <div class="flex justify-center my-4" >
                     <mat-radio-group aria-label="response" formControlName="response">
-                        <mat-radio-button value="1">Oui</mat-radio-button>
-                        <mat-radio-button value="2">Non</mat-radio-button>
-                        <mat-radio-button value="3">N/A</mat-radio-button>
+                        <mat-radio-button value="oui">Oui</mat-radio-button>
+                        <mat-radio-button value="non">Non</mat-radio-button>
+                        <mat-radio-button value="na">N/A</mat-radio-button>
                     </mat-radio-group>
                 </div>
                 <mat-form-field class="!flex ">
                     <mat-label>Commentaire</mat-label>
                     <textarea matInput formControlName="comment" aria-label="Commentaire"></textarea>
                 </mat-form-field>
-                <div *ngIf="currentInstructionIndex < maxInstructionIndex" class="flex justify-end">
-                    <button (click)="nextInstruction()" mat-raised-button color="primary" [disabled]="form.get('response')!.invalid"> Next </button>
+
+                <div [ngClass]="currentInstructionIndex >1 ? 'flex justify-between' : 'flex justify-end'"  >
+                    <div *ngIf="currentInstructionIndex > 1" >
+                        <button (click)="prevInstruction()" mat-raised-button color="primary"> Prev </button>
+                    </div>
+
+                    <div *ngIf="currentInstructionIndex < maxInstructionIndex">
+                        <button (click)="nextInstruction()" mat-raised-button color="primary" [disabled]="form.get('response')!.invalid"> Next </button>
+                    </div>
+                    <div *ngIf="currentInstructionIndex == maxInstructionIndex" >
+                        <button (click)="generate()" mat-raised-button color="primary" [disabled]="form.invalid"> Terminer </button>
+                    </div>
                 </div>
-                <div *ngIf="currentInstructionIndex == maxInstructionIndex" class="flex justify-end">
-                    <button (click)="generate()" mat-raised-button color="primary" [disabled]="form.invalid"> Terminer </button>
-                </div>
-                
+                    
             </div>
         </div>
     </form>
