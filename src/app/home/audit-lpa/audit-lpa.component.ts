@@ -20,7 +20,7 @@ export interface HeaderMap {
 export class AuditLpaComponent implements OnInit {
 
   public currentInstructionIndex: number = 1;
-  public maxInstructionIndex: number = 3;
+  public maxInstructionIndex: number = 22;
 
   public form!: FormGroup;
   public lpaResponses: string[][] = [];

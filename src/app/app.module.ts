@@ -17,6 +17,7 @@ import {ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import { StarRatingModule } from 'angular-star-rating';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { translationEn } from '../assets/i18n/translation-en';
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatRadioModule,
     HttpClientModule,
+    MatSelectModule,
     StarRatingModule.forRoot(),
     TranslateModule.forRoot({
       defaultLanguage: 'fr',

@@ -20,6 +20,9 @@ export class ExcelService {
   
     updateLPAExcelFile(fileData: ArrayBuffer, lpaData: string[][], headerData: HeaderMap): void {
         const workbook = new ExcelJS.Workbook();
+        let nbrOui = 0;
+        let nbrNon = 0;
+        let nbrNA = 0;
         workbook.xlsx.load(fileData).then(() => {
             const worksheet = workbook.getWorksheet(2)!;
 
@@ -31,11 +34,27 @@ export class ExcelService {
             worksheet.getCell('Q8').value = headerData.supervisor;
 
             lpaData.forEach((row, rowIndex) => {
-                if (row[1] == "oui") worksheet.getCell(`Q${rowIndex + 12}`).value = "X";
-                if (row[1] == "non") worksheet.getCell(`S${rowIndex + 12}`).value = "X"; 
-                if (row[1] == "na") worksheet.getCell(`U${rowIndex + 12}`).value = "X"; 
+                if (row[1] == "oui") {
+                    worksheet.getCell(`Q${rowIndex + 12}`).value = "X";
+                    nbrOui++;
+                }
+                if (row[1] == "non"){
+                    worksheet.getCell(`S${rowIndex + 12}`).value = "X"; 
+                    nbrNon++;
+                }
+                if (row[1] == "na") {
+                    worksheet.getCell(`U${rowIndex + 12}`).value = "X"; 
+                    nbrNA++;
+                }
                 worksheet.getCell(`V${rowIndex + 12}`).value = row[2];
             });
+
+            worksheet.getCell('AL37').value = nbrOui+nbrNon;
+            worksheet.getCell('AL38').value = nbrOui;
+            worksheet.getCell('AL39').value = nbrNon;
+            worksheet.getCell('AL40').value = Math.round(nbrOui/(nbrNon+nbrOui)*100) + '%';
+
+
 
             const fileName ='Checklist Layred Audit Process.xlsx';
 
