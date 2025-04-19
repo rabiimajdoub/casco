@@ -2,6 +2,8 @@
   "routes": [
     "/home",
     "/home/audit-5s",
-    "/home/audit-lpa"
+    "/home/audit-lpa",
+    "/home/audit-magasin",
+    "/home/near-miss"
   ]
 }

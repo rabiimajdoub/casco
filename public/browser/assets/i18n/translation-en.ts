@@ -38,5 +38,26 @@ export const translationEn = {
       q21: "Are rework/disassembly performed according to instructions with proper identification?",
       q22: "Are preventive maintenance activities completed as scheduled?"
     }
+  },
+  magasin: {
+    questions: {
+      q1: "Bins, cartons, and pallets are properly stored in suitable and clean locations. They are not deformed, torn, or open (cartons).",
+      q2: "Finished product bins are clean and organized. No waste, water, or pollution is present.",
+      q3: "Aisles, corridors, and passageways are clear and unobstructed.",
+      q4: "Storage areas for components are defined and respected. No parts or components are outside or overflowing from the packaging.",
+      q5: "There is no risk of misidentification: bins are clearly identified, packaging complies with the instruction.",
+      q6: "All hazards are identified and displayed at the workstation (Safety and Environmental Risk).",
+      q7: "Personal protective equipment (PPE) is available and worn by operators.",
+      q8: "Instructions are available at the workstation.",
+      q9: "Waste sorting rules are defined, displayed, and followed. There are enough trash bins.",
+      q10: "Drums and barrels are properly stored (sufficient storage, emptied, and clean) on retention trays (chemical products).",
+      q11: "Cleaning control sheets for the store are filled out.",
+      q12: "Chemical products are properly identified/labeled.",
+      q13: "Fire extinguishers or fire hoses are accessible, and their validity period is compliant. Fire alarm buttons and emergency exits are accessible.",
+      q14: "Safety data sheets (SDS) are available and up to date.",
+      q15: "Finished products intended for shipment are correctly identified with (reference, quantity, client reference, and designation).",
+      q16: "Barcode reading areas (finished product labels) are not obstructed.",
+      q17: "The packaging used for finished products is the one defined in the specifications."
+    }
   }
 };

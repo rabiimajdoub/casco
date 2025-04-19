@@ -1,7 +1,7 @@
 <div class="p-5">
 
     <form [formGroup]="form" >
-        <div class="grid md:grid-cols-3 grid-cols-1 gap-4 gap-y-2">
+        <div class="grid md:grid-cols-4 grid-cols-1 gap-4 gap-y-2">
             <mat-form-field class="!flex">
                 <mat-label>Nom Auditeur</mat-label>
                 <input type="text" matInput formControlName="auditeur">
@@ -20,8 +20,9 @@
             </mat-form-field>
         </div>
         <div class="">
-            <div class="grid grid-cols-1 md:grid-cols-2">
-            <div class="">
+            <div class="grid grid-cols-1 md:grid-cols-5">
+            <div class="md:grid-cols-1"></div>
+            <div class="md:col-span-3">
                 <h1 class="text-2xl font-bold mb-4">Instruction N° {{currentInstructionIndex}} / {{maxInstructionIndex}}</h1>
                 <p> {{'magasin.questions.q'+currentInstructionIndex | translate}} </p>
                 <div class="flex justify-center my-4" >
