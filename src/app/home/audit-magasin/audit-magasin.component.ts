@@ -2,28 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ExcelService } from '../../services/excel.service';
+import { LPAHeaderMap } from '../audit-lpa/audit-lpa.component';
 
-export interface LPAHeaderMap {
-  uap: string;
-  auditeur: string;
-  line: string;
-  supervisor: string;
-  product: string;
-  date: string;
-}
 
 @Component({
-  selector: 'app-audit-lpa',
-  templateUrl: './audit-lpa.component.html',
+  selector: 'app-audit-magasin',
+  templateUrl: './audit-magasin.component.html'
 })
 
-export class AuditLpaComponent implements OnInit {
+export class AuditMagasinComponent implements OnInit {
 
   public currentInstructionIndex: number = 1;
-  public maxInstructionIndex: number = 22;
+  public maxInstructionIndex: number = 17;
 
   public form!: FormGroup;
-  public lpaResponses: string[][] = [];
+  public magasinResponses: string[][] = [];
 
 
   constructor(  private translateService: TranslateService, private excelService: ExcelService  ) { }
@@ -35,7 +28,6 @@ export class AuditLpaComponent implements OnInit {
 
   private initializeForms(): void {
     this.form = new FormGroup({
-      uap: new FormControl(null, { validators: Validators.required }),
       auditeur: new FormControl(null, { validators: Validators.required }),
       line: new FormControl(null, { validators: Validators.required }),
       supervisor: new FormControl(null, { validators: Validators.required }),
@@ -47,17 +39,17 @@ export class AuditLpaComponent implements OnInit {
 
   public generate(): void {
     if (this.form.valid) {
-      if(this.lpaResponses.length < this.maxInstructionIndex)
+      if(this.magasinResponses.length < this.maxInstructionIndex)
         this.addResponse();
       const headerMap: LPAHeaderMap = {
-        uap: this.form.get('uap')!.value as string,
+        uap: "Magasin",
         auditeur: this.form.get('auditeur')!.value as string,
         line: this.form.get('line')!.value as string,
         supervisor: this.form.get('supervisor')!.value as string,
         product: this.form.get('product')!.value as string,
         date: new Date().toLocaleDateString()
       };
-      this.excelService.loadLPAExcelFile(this.lpaResponses,headerMap);
+      this.excelService.loadMagasinExcelFile(this.magasinResponses,headerMap);
     }
   }
 
@@ -71,7 +63,7 @@ export class AuditLpaComponent implements OnInit {
 
       this.addResponse();
       this.currentInstructionIndex++;
-      if (this.lpaResponses[this.currentInstructionIndex-1])
+      if (this.magasinResponses[this.currentInstructionIndex-1])
         this.loadResponse();
       else {
         this.form.get('response')!.setValue(null);
@@ -88,18 +80,18 @@ export class AuditLpaComponent implements OnInit {
   }
 
   private loadResponse(): void {
-    this.form.get('response')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][1] || null);
-    this.form.get('comment')!.setValue(this.lpaResponses[this.currentInstructionIndex-1][2] || null);
+    this.form.get('response')!.setValue(this.magasinResponses[this.currentInstructionIndex-1][1] || null);
+    this.form.get('comment')!.setValue(this.magasinResponses[this.currentInstructionIndex-1][2] || null);
   }
 
 
   private addResponse(): void {
     let responseRow : string[] = [];
 
-    responseRow[0]=this.translateService.instant('lpa.questions.q' + this.currentInstructionIndex);
+    responseRow[0]=this.translateService.instant('magasin.questions.q' + this.currentInstructionIndex);
     responseRow[1]=this.form.get('response')!.value;
     responseRow[2]=this.form.get('comment')!.value;
-    this.lpaResponses[this.currentInstructionIndex-1] = responseRow;
+    this.magasinResponses[this.currentInstructionIndex-1] = responseRow;
   }
 
 

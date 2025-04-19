@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ExcelService } from '../../services/excel.service';
-import { HeaderMap } from '../audit-lpa/audit-lpa.component';
+import { LPAHeaderMap } from '../audit-lpa/audit-lpa.component';
 
 @Component({
   selector: 'app-audit-five-s',
-  templateUrl: './audit-five-s.component.html',
-  styleUrl: './audit-five-s.component.css'
+  templateUrl: './audit-five-s.component.html'
 })
 export class AuditFiveSComponent {
   
@@ -41,7 +40,7 @@ export class AuditFiveSComponent {
       if (this.form.valid) {
         if(this.lpaResponses.length < this.maxInstructionIndex)
           this.addResponse();
-        const headerMap: HeaderMap = {
+        const headerMap: LPAHeaderMap = {
           uap: this.form.get('uap')!.value as string,
           auditeur: this.form.get('auditeur')!.value as string,
           line: this.form.get('line')!.value as string,

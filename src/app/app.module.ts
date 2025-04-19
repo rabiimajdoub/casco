@@ -23,13 +23,17 @@ import {MatSelectModule} from '@angular/material/select';
 import { translationEn } from '../assets/i18n/translation-en';
 import { translationFr } from '../assets/i18n/translation-fr';
 import { HttpClientModule } from '@angular/common/http';
+import { NearMissComponent } from './home/near-miss/near-miss.component';
+import { AuditMagasinComponent } from './home/audit-magasin/audit-magasin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuditLpaComponent,
     AuditFiveSComponent,
-    HomeComponent
+    HomeComponent,
+    NearMissComponent,
+    AuditMagasinComponent
   ],
   imports: [
     BrowserModule,
