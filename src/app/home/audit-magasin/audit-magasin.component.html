@@ -1,22 +1,14 @@
 <div class="p-5">
 
     <form [formGroup]="form" >
-        <div class="grid md:grid-cols-4 grid-cols-1 gap-4 gap-y-2">
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-4 gap-y-2">
             <mat-form-field class="!flex">
                 <mat-label>Nom Auditeur</mat-label>
                 <input type="text" matInput formControlName="auditeur">
             </mat-form-field>
             <mat-form-field class="!flex">
-                <mat-label>Ligne</mat-label>
-                <input type="text" matInput formControlName="line">
-            </mat-form-field>
-            <mat-form-field class="!flex">
                 <mat-label>Nom Superviseur</mat-label>
                 <input type="text" matInput formControlName="supervisor">
-            </mat-form-field>
-            <mat-form-field class="!flex">
-                <mat-label>Produit</mat-label>
-                <input type="text" matInput formControlName="product">
             </mat-form-field>
         </div>
         <div class="">

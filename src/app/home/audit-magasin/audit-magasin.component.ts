@@ -29,9 +29,7 @@ export class AuditMagasinComponent implements OnInit {
   private initializeForms(): void {
     this.form = new FormGroup({
       auditeur: new FormControl(null, { validators: Validators.required }),
-      line: new FormControl(null, { validators: Validators.required }),
       supervisor: new FormControl(null, { validators: Validators.required }),
-      product: new FormControl(null, { validators: Validators.required }),
       comment: new FormControl(null),
       response: new FormControl(null, { validators: Validators.required }),
     })
@@ -44,9 +42,9 @@ export class AuditMagasinComponent implements OnInit {
       const headerMap: LPAHeaderMap = {
         uap: "Magasin",
         auditeur: this.form.get('auditeur')!.value as string,
-        line: this.form.get('line')!.value as string,
+        line: "",
         supervisor: this.form.get('supervisor')!.value as string,
-        product: this.form.get('product')!.value as string,
+        product: "",
         date: new Date().toLocaleDateString()
       };
       this.excelService.loadMagasinExcelFile(this.magasinResponses,headerMap);
